@@ -93,7 +93,8 @@ int main(){
 
   if((q0<0.0 && q1>0.0)||(q0>0.0 && q1<0.0)){
   }
-       cout << q2 << "  " << p2 <<  endl; 
+  cout << q2 << "  " << p2 <<  endl; 
+
   }
   return 0;
 }
