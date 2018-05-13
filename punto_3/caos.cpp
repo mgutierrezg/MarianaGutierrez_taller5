@@ -23,22 +23,23 @@ double dq2(double p2){
 
 double dp1(double q1){
   double e = pow(10.0,-3.0);
-  double parente = (4*q1*q1) + (e*e);
+  double parente = (4*pow(q1,2.0)) + pow(e,2.0);
   double denominador = pow(parente,1.5);
-  double p = 2*q1/denominador;
-  return -p;
+  double p = (-2*q1)/denominador;
+  return p;
+
 }
 
 double dp2(double q1, double q2){
   double e = pow(10.0,-3.0);
-  double t = 0.0;
+  double e_c = pow(e,2.0);
   double resta = q1-q2;
-  double resta_cuadrado = pow(resta,2);
+  double resta_cuadrado = pow(resta,2.0);
   double suma = q1 + q2;
-  double suma_cuadrado = pow(suma,2);
-  double paren1 = resta_cuadrado + ((e*e)/4);
+  double suma_cuadrado = pow(suma,2.0);
+  double paren1 = resta_cuadrado + (e_c/4);
   double denom1 = pow(paren1,1.5);
-  double paren2 = suma_cuadrado + ((e*e)/4);
+  double paren2 = suma_cuadrado + (e_c/4);
   double denom2 = pow(paren2,1.5);
   double px = (resta/denom1) - (suma/denom2);
   return px;
@@ -52,7 +53,7 @@ int main(){
   double q2 = -a;
   double p2 = 0;
   double h  = 0.006;
-  double N = 3000.0/h;
+  double N = 3000.0;
   
   for(int i = 0; i<N; i++){
 
@@ -62,7 +63,6 @@ int main(){
   double kq2_1, kq2_2, kq2_3, kq2_4;
 
   double q0 = q1;
-  
   kq1_1 = dq1(p1);
   kq2_1 = dq2(p2);
   kp1_1 = dp1(q1);
@@ -91,10 +91,10 @@ int main(){
   q2 += (h/6.0) * (kq2_1 + 2*kq2_2 + 2*kq2_3 + kq2_4);
 
 
-  if((q0<0.0 && q1>0.0)||(q0>0.0 && q1<0.0)){
+  if(q0*q1 < 0){
   }
   cout << q2 << "  " << p2 <<  endl; 
-
   }
   return 0;
+
 }
