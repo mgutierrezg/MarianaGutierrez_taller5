@@ -9,7 +9,7 @@ double d = 1.0;
 double h = 5.0/512.0;
 double v0 = 100.0;
 //int N = 2*pow((L/h),2.0);
-int N = 1000;
+int N = 60000;
 int M = 512;
 //Matrices y vectores M*M
 double potencial[512][512];
