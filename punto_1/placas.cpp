@@ -86,7 +86,7 @@ void campoe(){
   for( int i = 0; i<M-1;i++){
     for (int j =0; j<M-1;j++){
       Ex[i][j] = -((potencial[i][j-1] - potencial[i][j+1])/2*h);
-      Ey[i][j] = (potencial[i-1][j] - potencial[i+1][j])/2*h;
+      Ey[i][j] = ((potencial[i-1][j] - potencial[i+1][j])/2*h);
 
     }
   }
