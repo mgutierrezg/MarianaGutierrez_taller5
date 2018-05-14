@@ -11,18 +11,18 @@ void imprime(double* u, int n);
 // constantes para todo
 
 double L = 100.0;
-double T = 40.0;
+double t = 200.0;
 double rho = 10.0;
-double c = sqrt(T/rho);
+double c = sqrt(40.0/rho);
 
 
 void u_in_v(double* u, double delta_x, double x_min, int n){
   for (int i=0; i<n; i++){
     double x = x_min + i*delta_x;
-       if(x <= 0.6*L){
+       if(x <= 0.8*L){
 	 u[i] = 1.25*x/L;
        }
-	if(x > 0.8*L){
+       else{
 	  u[i] = 5 - (5*x/L);
 	}
 	cout<<u[i]<<" ";
@@ -34,10 +34,10 @@ void u_in_v(double* u, double delta_x, double x_min, int n){
 void u_in_p(double* u, double delta_x, double x_min, int n){
   for (int i=0; i<n; i++){
     double x = x_min + i*delta_x;
-       if(x <= 0.6*L){
+       if(x <= 0.8*L){
 	 u[i] = 1.25*x/L;
        }
-	if(x > 0.8*L){
+	else{
 	  u[i] = 5 - (5*x/L);
 	}
     }
@@ -49,7 +49,7 @@ void evoluciona(double* u_nuevo, double* u_presente, double* u_viejo, int n, dou
   double c_c = c* c;
   double k = (delta_tc/delta_xc)*c_c;
   for (int i = 1; i<n-1; i++){
-    u_nuevo[i] = (k*(u_viejo[i+1]-2.0*u_viejo[i]+u_viejo[i-1])) + 2*u_viejo[i] - u_presente[i];
+    u_nuevo[i] = (k*(u_presente[i+1]-2.0*u_presente[i]+u_presente[i-1])) + 2*u_presente[i] - u_viejo[i];
   }  
 }
 
@@ -74,7 +74,7 @@ int main(){
   double x=0;
   double x_min = 0.0;
   int nx = L/delta_x + 1;
-  int nt = T/delta_t +1;
+  int nt = t/delta_t +1;
   
   double *u_nuevo;
   double *u_viejo;
